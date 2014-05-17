@@ -25,6 +25,7 @@ public class Main {
 		builder.addAcaoListener(new Impressora());
 		builder.addAcaoListener(new NotaFiscalDao());
 		builder.addAcaoListener(new EnviadorDeEmail());
+		builder.addAcaoListener(new Multiplicador(10.));
 		
 		ItemDaNotaBuilder builder2 = new ItemDaNotaBuilder();
 		
