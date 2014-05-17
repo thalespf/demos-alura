@@ -1,11 +1,9 @@
-package com.thalespf.demos.dp;
+package com.thalespf.demos.dp.examples.strategy;
 
 import com.thalespf.demos.dp.domain.Conta;
 import com.thalespf.demos.dp.domain.ICCC;
 import com.thalespf.demos.dp.domain.Imposto;
 import com.thalespf.demos.dp.domain.Orcamento;
-import com.thalespf.demos.dp.examples.strategy.Conservador;
-import com.thalespf.demos.dp.examples.strategy.RealizadorDeInvestimento;
 
 class Teste {
 	public static void main(String[] args) {

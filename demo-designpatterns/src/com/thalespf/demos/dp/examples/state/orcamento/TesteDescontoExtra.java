@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.thalespf.demos.dp;
+package com.thalespf.demos.dp.examples.state.orcamento;
 
 import com.thalespf.demos.dp.domain.Orcamento;
 

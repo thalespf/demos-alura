@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.thalespf.demos.dp;
+package com.thalespf.demos.dp.examples.decorator;
 
 import com.thalespf.demos.dp.domain.ICMS;
 import com.thalespf.demos.dp.domain.ICPP;
