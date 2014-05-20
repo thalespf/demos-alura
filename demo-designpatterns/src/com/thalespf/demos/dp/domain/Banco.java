@@ -14,10 +14,6 @@ public class Banco {
 	private String endereco;
 	private String email;
 
-	private Banco() {
-		
-	}
-	
 	public Banco(String nome, String telefone, String endereco, String email) {
 		super();
 		this.nome = nome;

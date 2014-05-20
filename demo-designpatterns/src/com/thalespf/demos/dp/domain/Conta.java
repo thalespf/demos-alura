@@ -24,10 +24,6 @@ public class Conta implements Operacoes {
 	
 	private EstadoDaConta estadoAtual = new EstadoSaldoPositivo();
 	
-	private Conta() {
-		
-	}
-	
 	public Conta(double salso, String titular, String numero) {
 		super();
 		this.salso = salso;

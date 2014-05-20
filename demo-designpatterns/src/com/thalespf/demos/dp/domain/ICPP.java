@@ -7,7 +7,7 @@ import com.thalespf.demos.dp.examples.template.TemplateDeImpostoCondicional;
 
 /**
  * @author Thales Ferreira / l.thales.x@gmail.com
- *
+ * 
  */
 public class ICPP extends TemplateDeImpostoCondicional {
 
@@ -23,9 +23,10 @@ public class ICPP extends TemplateDeImpostoCondicional {
 
 	@Override
 	public boolean deveraConcederImpostoMaximo(Orcamento orcamento) {
-		if(orcamento.getValor() < 500.) {
+		if (orcamento.getValor() < 500.) {
 			return false;
 		}
+		
 		return true;
 	}
 
