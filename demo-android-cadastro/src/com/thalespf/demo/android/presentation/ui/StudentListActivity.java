@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +31,8 @@ import com.thalespf.demo.service.StudentService;
 
 public class StudentListActivity extends ActionBarActivity {
 
+	private PlaceholderFragment placeholderFragment;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,9 +42,14 @@ public class StudentListActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_lista_alunos);
 
 		if (savedInstanceState == null) {
-			PlaceholderFragment placeholderFragment = new PlaceholderFragment();
+			placeholderFragment = new PlaceholderFragment();
 			getSupportFragmentManager().beginTransaction().add(R.id.container, placeholderFragment).commit();
 		}
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
 	}
 	
 	@Override
@@ -69,7 +76,7 @@ public class StudentListActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.lista_alunos, menu);
+		getMenuInflater().inflate(R.menu.list_student_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -90,16 +97,26 @@ public class StudentListActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.deletar:
+			StudentService studentService = Registry.getInstance().getStudentService();
+			studentService.delete(placeholderFragment.studentSelected);
+			Log.i(Constants.getTag(this), "Aluno deletado");
+			placeholderFragment.setItens();
+			break;
+		default:
+			break;
+		}
+		return super.onContextItemSelected(item);
+	}
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-		menu.add("Ligar");
-		menu.add("Enviar SMS");
-		menu.add("Navegar no Site");
-		menu.add("Deletar");
-		menu.add("Ver no Mapa");
-		menu.add("Enviar E-mail");
-
+		getMenuInflater().inflate(R.menu.context_menu_student_list, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 
@@ -107,6 +124,17 @@ public class StudentListActivity extends ActionBarActivity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
+		
+		private ListView listaAlunos;
+		private ArrayAdapter<Student> adapter;
+		protected Student studentSelected;
+
+		@Override
+		public void onResume() {
+			super.onResume();
+			
+			setItens();
+		}
 
 		public PlaceholderFragment() {
 		}
@@ -114,18 +142,14 @@ public class StudentListActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_list_student, container, false);
 
-			ListView listaAlunos = (ListView) rootView.findViewById(R.id.lista);
+			listaAlunos = (ListView) rootView.findViewById(R.id.lista);
 
 			registerForContextMenu(listaAlunos);
 
-			StudentService studentService = Registry.getInstance().getStudentService();
-			List<Student> alunos = studentService.findAll();
-			BaseAdapter adapter = new ArrayAdapter<Student>(getActivity(),
-					android.R.layout.simple_list_item_1, alunos);
-			listaAlunos.setAdapter(adapter);
-
+			setItens();
+			
 			listaAlunos.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
@@ -143,16 +167,23 @@ public class StudentListActivity extends ActionBarActivity {
 				@Override
 				public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
 						long id) {
-					Toast makeText = Toast.makeText(getActivity(), "Click na posicao " + position,
-							Toast.LENGTH_SHORT);
-					makeText.setGravity(Gravity.CENTER, 0, 0);
-					makeText.show();
+					
+					studentSelected = adapter.getItem(position);
+					
 					return false;
 				}
 
 			});
 
 			return rootView;
+		}
+
+		private void setItens() {
+			StudentService studentService = Registry.getInstance().getStudentService();
+			List<Student> alunos = studentService.findAll();
+			adapter = new ArrayAdapter<Student>(getActivity(),
+					android.R.layout.simple_list_item_1, alunos);
+			listaAlunos.setAdapter(adapter);
 		}
 	}
 

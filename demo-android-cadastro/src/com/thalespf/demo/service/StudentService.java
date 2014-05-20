@@ -28,4 +28,8 @@ public class StudentService {
 		return alunoDAO.findAll();
 	}
 
+	public void delete(Student student) {
+		alunoDAO.delete(student);
+	}
+
 }

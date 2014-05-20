@@ -114,4 +114,22 @@ public class StudentDAO {
 		return student;
 	}
 
+	public void delete(Student student) {
+		SQLiteDatabase connection = null;
+		try {
+			connection = db.openForWrite();
+			connection.beginTransaction();
+			String[] whereArgs = { student.getId().toString() };
+			connection.delete(DBDefinition.Tables.STUDENT.getTableName(), "id=?", whereArgs);
+			connection.setTransactionSuccessful();
+		} catch(Exception e) {
+			throw new RuntimeException("error ao deletar aluno", e);
+		} finally {
+			if(connection != null) {
+				connection.endTransaction();
+				connection.close();				
+			}
+		}
+	}
+
 }
