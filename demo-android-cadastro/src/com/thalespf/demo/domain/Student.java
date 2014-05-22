@@ -1,11 +1,13 @@
 package com.thalespf.demo.domain;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Thales Ferreira / l.thales.x@gmail.com
  *
  */
-public class Student {
+public class Student implements Serializable {
 
 	private Long id;
 	private String nome;
@@ -18,6 +20,22 @@ public class Student {
 	@Override
 	public String toString() {
 		return nome;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null)
+			return false;
+		if(o.getClass() != Student.class) 
+			return false;
+		Student s = (Student) o;
+		Long id = s.getId();
+		if(id != null && this.id != null && 
+				id.equals(this.getId()))
+			return true;
+		if(o != this)
+			return false;
+		return false;
 	}
 
 	public Long getId() {

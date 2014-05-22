@@ -65,7 +65,7 @@ public class Registry {
 		conn.beginTransaction();
 		try {
 			if(!conn.isDatabaseIntegrityOk()) {
-				Log.w(Constants.getTag(this), "Banco de dados nao esta integro");
+				Log.w(Util.getTag(this), "Banco de dados nao esta integro");
 			}
 			conn.setTransactionSuccessful();
 		} finally {

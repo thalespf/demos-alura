@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.thalespf.demo.Constants;
+import com.thalespf.demo.Util;
 import com.thalespf.demo.datasource.DBDefinition.Tables;
 
 /**
@@ -61,7 +61,7 @@ public class DB {
 
 		@Override
 		public void onCreate(final SQLiteDatabase db) {
-			Log.i(Constants.getTag(this), "Creating database...");
+			Log.i(Util.getTag(this), "Creating database...");
 			for (Tables table : Tables.values()) {
 				db.execSQL(table.getCreateCmd());
 			}
@@ -73,14 +73,14 @@ public class DB {
 
 		@Override
 		public void onOpen(final SQLiteDatabase db) {
-			Log.i(Constants.getTag(this), "Open database...");
+			Log.i(Util.getTag(this), "Open database...");
 			super.onOpen(db);
 		}
 
 		@Override
 		public void onUpgrade(final SQLiteDatabase db, final int oldVersion,
 				final int newVersion) {
-			Log.i(Constants.getTag(this), "Upgrading database...");
+			Log.i(Util.getTag(this), "Upgrading database...");
 			for (Tables table : Tables.values()) {
 				db.execSQL("DROP TABLE IF EXISTS " + table.getTableName());
 			}

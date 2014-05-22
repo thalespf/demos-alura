@@ -9,7 +9,7 @@ import android.content.res.XmlResourceParser;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.thalespf.demo.Constants;
+import com.thalespf.demo.Util;
 import com.thalespf.demo.R;
 import com.thalespf.demo.Registry;
 import com.thalespf.demo.android.presentation.ui.exception.ValidationError;

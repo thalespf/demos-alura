@@ -55,7 +55,12 @@ public class StudentDAO {
 		
 		ContentValues values = toValues(student);
 		
-		connection.insert(Tables.STUDENT.getTableName(), null, values);
+		if(student.getId() == null)
+			connection.insert(Tables.STUDENT.getTableName(), null, values);
+		else {
+			String[] id = { String.valueOf(student.getId()) };
+			connection.update(Tables.STUDENT.getTableName(), values, "id=?", id);
+		}
 	}
 
 	private ContentValues toValues(Student student) {
@@ -122,6 +127,35 @@ public class StudentDAO {
 			String[] whereArgs = { student.getId().toString() };
 			connection.delete(DBDefinition.Tables.STUDENT.getTableName(), "id=?", whereArgs);
 			connection.setTransactionSuccessful();
+		} catch(Exception e) {
+			throw new RuntimeException("error ao deletar aluno", e);
+		} finally {
+			if(connection != null) {
+				connection.endTransaction();
+				connection.close();				
+			}
+		}
+	}
+
+	public Student findByTelephony(String telephonyNumber) {
+		SQLiteDatabase connection = null;
+		try {
+			connection = db.openForWrite();
+			connection.beginTransaction();
+			String[] whereArgs = { telephonyNumber };
+			String[] columns = DBDefinition.Tables.STUDENT.getColumns();
+			Cursor cursor = connection.query(DBDefinition.Tables.STUDENT.getTableName(), 
+					columns, DBDefinition.StudentDescription.TELEPHONY.getColumn() + "=?",  
+					whereArgs, null, null, null);
+			
+			Student student = null;
+			if(cursor.getCount() == 1 && cursor.moveToFirst()) {
+				student = cursorToStudent(cursor);
+			}
+			
+			connection.setTransactionSuccessful();
+			
+			return student;
 		} catch(Exception e) {
 			throw new RuntimeException("error ao deletar aluno", e);
 		} finally {

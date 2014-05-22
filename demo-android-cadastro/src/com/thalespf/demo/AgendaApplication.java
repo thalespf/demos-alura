@@ -37,8 +37,8 @@ public class AgendaApplication extends Application {
 		
 		singleton = this;
 		
-		Log.i(Constants.getTag(this), "onCreate(). Criando aplicacao.");
-		Log.i(Constants.getTag(this), "onCreate(). Inicializando Registry.");
+		Log.i(Util.getTag(this), "onCreate(). Criando aplicacao.");
+		Log.i(Util.getTag(this), "onCreate(). Inicializando Registry.");
 		Registry.getInstance().init(getBaseContext());
 	}
 	

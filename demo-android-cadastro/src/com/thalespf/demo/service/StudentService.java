@@ -32,4 +32,8 @@ public class StudentService {
 		alunoDAO.delete(student);
 	}
 
+	public Student findByTelephony(String telephonyNumber) {
+		return alunoDAO.findByTelephony(telephonyNumber);
+	}
+
 }
