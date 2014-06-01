@@ -14,6 +14,7 @@ import android.view.View;
 import com.thalespf.demo.R;
 import com.thalespf.demo.Registry;
 import com.thalespf.demo.Util;
+import com.thalespf.demo.android.presentation.task.SyncStudentTask;
 import com.thalespf.demo.android.presentation.ui.fragment.ListStudentFragment;
 import com.thalespf.demo.domain.Student;
 import com.thalespf.demo.service.StudentService;
@@ -77,6 +78,18 @@ public class StudentListActivity extends ActionBarActivity {
 			Log.i(Util.getTag(this), "Adicionando aluno");
 			Intent intent = new Intent(this, StudentActivity.class);
 			startActivity(intent);
+			break;
+		case R.id.menu_enviar_alunos:
+			SyncStudentTask studentTask = new SyncStudentTask(this);
+			studentTask.execute();
+			break;
+		case R.id.menu_receber_provas:
+			Intent exams = new Intent(this, ListExamActivity.class);
+			startActivity(exams);
+			break;
+		case R.id.menu_mapa:
+			Intent goMap = new Intent(this, StudentMap.class);
+			startActivity(goMap);
 			break;
 		default:
 			break;

@@ -16,6 +16,8 @@
 package com.thalespf.demo;
 
 import android.app.Application;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.util.Log;
 
@@ -40,6 +42,7 @@ public class AgendaApplication extends Application {
 		Log.i(Util.getTag(this), "onCreate(). Criando aplicacao.");
 		Log.i(Util.getTag(this), "onCreate(). Inicializando Registry.");
 		Registry.getInstance().init(getBaseContext());
+		
 	}
 	
 	@Override

@@ -3,19 +3,18 @@
  */
 package com.thalespf.demo.android.service;
 
-import com.thalespf.demo.R;
-import com.thalespf.demo.Registry;
-import com.thalespf.demo.Util;
-import com.thalespf.demo.dao.StudentDAO;
-import com.thalespf.demo.domain.Student;
-import com.thalespf.demo.service.StudentService;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.telephony.SmsMessage;
 import android.util.Log;
+
+import com.thalespf.demo.R;
+import com.thalespf.demo.Registry;
+import com.thalespf.demo.Util;
+import com.thalespf.demo.domain.Student;
+import com.thalespf.demo.service.StudentService;
 
 /**
  * @author Thales Ferreira / l.thales.x@gmail.com

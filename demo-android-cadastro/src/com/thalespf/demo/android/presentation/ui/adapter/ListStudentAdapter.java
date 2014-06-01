@@ -47,12 +47,20 @@ public class ListStudentAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.background = (LinearLayout) convertView.findViewById(R.id.fundo);
+		viewHolder.background = (ViewGroup) convertView.findViewById(R.id.fundo);
 		viewHolder.profilePicture = (ImageView) convertView.findViewById(R.id.foto);
 		viewHolder.nome = (TextView) convertView.findViewById(R.id.nome);
+		viewHolder.telefone = (TextView) convertView.findViewById(R.id.telefone);
+		viewHolder.site = (TextView) convertView.findViewById(R.id.site);
 		
 		Student student = students.get(position);
 		viewHolder.nome.setText(student.getNome());
+		String site = student.getSite();
+		if(site != null && viewHolder.site != null)
+			viewHolder.site.setText(site);
+		String telefone = student.getTelefone();
+		if(telefone != null && viewHolder.telefone != null)
+			viewHolder.telefone.setText(telefone);
 		
 		if(position % 2 == 0) {
 			viewHolder.background.setBackgroundColor(activity.getResources().getColor(R.color.linha_par));
@@ -72,7 +80,9 @@ public class ListStudentAdapter extends BaseAdapter {
 	
 	static class ViewHolder {
 
-		public LinearLayout background;
+		public TextView site;
+		public TextView telefone;
+		public ViewGroup background;
 		public TextView nome;
 		public ImageView profilePicture;
 
