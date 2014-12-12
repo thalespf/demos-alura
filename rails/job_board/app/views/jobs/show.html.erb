@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= job_title(@job) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @job.description %>
+</p>
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>
+
+<h2>Send a new comment</h2>
+<%= render 'comments/form' %>
+
+<h2>Comments</h2>
+<%= render @job.comments %>

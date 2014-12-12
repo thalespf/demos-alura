@@ -1,0 +1,107 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+#menu_align {
+  margin-left: 10%;
+}
+
+ul#menu {
+  padding:0;
+  list-style:none;
+}
+
+ul#menu li {
+  border: 1px solid #000;
+  width: 163px;
+  float: left;
+}
+
+ul#menu li a {
+  display: block;
+  padding: 6px;
+  height: 30px;
+  line-height: 30px;
+  background: #F60;
+  color: #FFF;
+  text-decoration: none;
+  font: 13px;
+  text-align: center;
+}
+
+ul#menu li a:hover {
+  background: #CCC;
+  color: #000;
+}
+
+ul#menu li ul {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+}
+
+ul#menu li:hover ul {
+  display: block;
+}
+
+#banner {
+  background-image: url(<%= asset_path('site/banner.jpg') %>);
+  width: 990px;
+  height: 287px;
+  clear: both;
+}
+
+#banner_espaco {
+  background-image: url(<%= asset_path('site/parte.jpg') %>);
+  width: 990px;
+  height: 38px;
+  clear: both;
+}
+
+#corpo1 {
+  background-image: url(<%= asset_path('site/corpo1.jpg') %>);
+  width: 990px;
+  height: 277px;
+  clear: both;
+}
+
+#noticias {
+  background-image: url(<%= asset_path('site/noticias.jpg') %>);
+  width: 278px;
+  height: 548px;
+  float: right;
+}
+
+#servicos {
+  background-image: url(<%= asset_path('site/corpo_servicos.jpg') %>);
+  width: 772px;
+  height: 271px;
+}
+
+#suporte {
+  background-image: url(<%= asset_path('site/corpo_suporte.jpg') %>);
+  width: 342px;
+  height: 271px;
+  float: right;
+}
