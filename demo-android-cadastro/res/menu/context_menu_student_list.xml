@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.thalespf.demo.android.presentation.ui.StudentListActivity" >
+
+    <item
+        android:id="@+id/ligar"
+        android:title="Ligar"/>
+    <item
+        android:id="@+id/sms"
+        android:title="Enviar SMS"/>
+    <item
+        android:id="@+id/ir_site"
+        android:title="Navegar no Site"/>
+    <item
+        android:id="@+id/deletar"
+        android:title="Deletar"/>
+    <item
+        android:id="@+id/map"
+        android:title="Ver no Mapa"/>
+    <item
+        android:id="@+id/email"
+        android:title="Enviar Email"/>
+
+</menu>
